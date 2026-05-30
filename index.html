@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>RiverRoots 3D</title>
+</head>
+
+<body>
+
+    <!--------------------------------------------- HERO ------------------------------------------->
+
+    <section id="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>3D Log</h1>
+                <p>Създайте по-спокойна и естествена среда за вашите риби.</p>
+                <a href="#order">
+                    <button>Поръчай сега</button>
+                </a>
+            </div>
+
+            <div class="hero-image">
+                <img src="images/3.1.png">
+            </div>
+        </div>
+    </section>
+
+    <!--------------------------------------------- DETAILS ------------------------------------------->
+
+    <section id="details">
+        <h2>Описание</h2>
+        <p>3D дънерът е практично скривалище за аквариумни риби, което им дава място, където да се чувстват защитени. В
+            природата рибите често търсят укрития, за да се скрият от стрес или други риби – този продукт пресъздава
+            точно такава среда във вашия аквариум.
+        </p>
+        <p>Освен като скривалище, дънерът предлага и допълнителна функционалност. Върху него могат да се поставят
+            растения, които не изискват почва, което ви позволява да декорирате аквариума си по-лесно и красиво.
+            Здравата конструкция гарантира дълготрайна употреба, без да се налага честа подмяна.
+        </p>
+    </section>
+
+    <!--------------------------------------------- CARDS ----------------------------------------------->
+
+    <section id="cards-container">
+
+        <div class="card">
+            <img src="images/1.JPG" alt="Ако не зареди провери си интърнета">
+            <h3>Многофункционален дизайн</h3>
+            <p>Служи едновременно като скривалище за риби и като основа за поставяне на растения.</p>
+        </div>
+
+        <div class="card">
+            <img src="images/2.1.png" alt="Ако не зареди провери си интърнета">
+            <h3>Издръжлива конструкция</h3>
+            <p>Материалът е устойчив и подходящ за продължителна употреба във водна среда.</p>
+        </div>
+
+        <div class="card">
+            <img src="images/3.1.png" alt="Ако не зареди провери си интърнета">
+            <h3>Достъпно решение</h3>
+            <p>Практичен избор за акваристи, които търсят полезен продукт на разумна цена.</p>
+        </div>
+
+
+    </section>
+
+    <!--------------------------------------------- ORDER ----------------------------------------->
+
+    <section id="order">
+
+        <h2>Поръчка</h2>
+        <p>Добавете 3D дънера към вашия аквариум и осигурете по-естествена и спокойна среда за вашите риби. Поръчайте
+            лесно и бързо още сега.</p>
+        <form action="https://formspree.io/f/maqvpzbn" method="POST">   
+
+            <label for="quantity">Количество:</label>
+            <input type="number" id="quantity" name="Quantity" value="1" min="1">
+            <p id="price">Цена: 16.99 евро.</p>
+            <input type="hidden" id="totalPrice" name="Total Price" value="10.99 евро">
+
+            <label for="color">Изберете цвят:</label>
+
+            <select id="color" name="Color" required>
+                <option value="">~~~Изберете цвят~~~</option>
+                <option value="Зелен">Зелен</option>
+                <option value="Сив">Сив</option>
+                <option value="Кафяв">Кафяв</option>
+                <option value="Син">Прозрачно Син</option>
+            </select>
+
+            <input type="text" name="Customer name" placeholder="Вашето име" required>
+            <input type="tel" name="Phone number" placeholder="Телефон" required>
+            <input type="email" name="Email" placeholder="Имейл" required>
+            <div class="deliveryoptions">
+                <label>
+                    <input type="radio" name="Delivery" value="address" required onclick="showDeliveryField('adress')">
+                    До адрес
+                </label>
+                <label>
+                    <input type="radio" name="Delivery" value="office" required onclick="showDeliveryField('office')">
+                    До офис
+                </label>
+            </div>
+            <div class="addressofficeField">
+                <input id="addressField" type="text" name="Address" placeholder="Адрес за доставка" required
+                    style="display: none;">
+                <input id="officeField" type="text" name="Office" placeholder="Офис за доставка" required
+                    style="display: none;">
+            </div>
+            <button type="submit">Изпрати поръчка</button>
+        </form>
+
+    </section>
+
+    <!--------------------------------------------------------------------------------------------->
+
+    <script>
+        function showDeliveryField(type) {
+            const addressField = document.getElementById("addressField");
+            const officeField = document.getElementById("officeField");
+            if (type === "adress") {
+                addressField.style.display = "inline-block";
+                officeField.style.display = "none";
+
+                addressField.required = true;
+                officeField.required = false;
+            } else {
+                addressField.style.display = "none";
+                officeField.style.display = "inline-block";
+
+                addressField.required = false;
+                officeField.required = true;
+            }
+        }
+
+    </script>
+
+    <script>
+        const productPrice = 16.99;
+
+        const quantityInput = document.getElementById("quantity");
+        const priceText = document.getElementById("price");
+        const totalPriceInput = document.getElementById("totalPrice");
+
+        function updatePrice() {
+            const quantity = quantityInput.value;
+            const total = quantity * productPrice;
+
+            priceText.innerText = `Цена: ${total} евро.`;
+            totalPriceInput.value = `${total} евро.`;
+        }
+
+        quantityInput.addEventListener("input", updatePrice);
+
+        updatePrice();
+    </script>
+
+    <script>
+        const color = document.getElementById("color").value;
+
+        console.log(color);
+    </script>
+
+</body>
+
+</html>
